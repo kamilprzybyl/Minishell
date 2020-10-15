@@ -2,7 +2,9 @@
 
 The objective of this project is to create a simple shell.
 
-# General
+<br />
+
+## General
 
 It contains a few basic functions
 * `echo`
@@ -13,7 +15,9 @@ It contains a few basic functions
 * `env`
 * `exit`
 
-# Setup
+<br />
+
+## Setup
 
 ```
 $ git clone git@github.com:kamilprzybyl/minishell.git
@@ -21,3 +25,4 @@ $ cd minishell
 $ make
 $ ./minishell
 ```
+
