@@ -1,26 +1,16 @@
 #include "minishell.h"
 
-void handle_input(char *input, t_info_minishell *info)
+void handle_input(char *input, char **envp)
 {
     char        **str_arr;
-    // int         i;
 
-    str_arr = strsplit(input);  // tokenization process
+    if (ft_strlen(input) == 0)
+        return;
 
-    check_cmd(str_arr[0], info);
+    str_arr = ft_strsplit(input);  // tokenization process
 
-    if (info->is_echo)
-        handle_echo(str_arr);
-    else if (info->is_pwd)
-        handle_pwd();
-    else if (info->is_exit)
-        handle_exit();
-    else if (info->is_cd)
-        handle_cd(str_arr[1]);
-
-    // i = 0;
-    // while (str_arr[i])
-    //     free(str_arr[i]);
-
+    if ((exec_builtin(str_arr, envp) == false) && (exec_bin(str_arr, envp) == false))
+        printf("-minishell: %s: command not found\n", str_arr[0]);                      // bus error when ft_printf
+    
     return;
 }
