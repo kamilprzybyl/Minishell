@@ -1,12 +1,12 @@
 #include "minishell.h"
 
-void handle_env(char **args)
+void handle_env(__attribute__ ((unused)) char **args)
 {
     int     i;
 
     i = 0;
-    while (args[i])
-        printf("%s\n", args[i++]);
+    while (environ[i])
+        printf("%s\n", environ[i++]);
 
     return;
 }

@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void handle_exit()
+void handle_exit(__attribute__ ((unused)) char **args)
 {
     exit(0);
 

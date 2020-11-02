@@ -7,10 +7,12 @@ t_builtin       cmds_table[] =
     {"exit", handle_exit},
     {"cd", handle_cd},
     {"env", handle_env},
+    {"export", handle_export},
+    {"unset", handle_unset},
     {NULL, NULL}
 };
 
-bool exec_builtin(char **str_arr, char **envp)
+bool exec_builtin(char **str_arr)
 {
     int     i;
 
@@ -19,9 +21,6 @@ bool exec_builtin(char **str_arr, char **envp)
     {
         if (ft_strcmp(str_arr[0], cmds_table[i].cmd_name) == 0)
         {
-            if (ft_strcmp("env", cmds_table[i].cmd_name) == 0)
-                str_arr = envp;
-
             cmds_table[i].fct(str_arr);
             return (true);
         }

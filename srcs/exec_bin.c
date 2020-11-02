@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-bool exec_bin(char **str_arr, char **envp)
+bool exec_bin(char **str_arr)
 {
     int     pid;
     char    *cmd;
@@ -16,7 +16,7 @@ bool exec_bin(char **str_arr, char **envp)
         ft_strcpy(cmd, "/bin/");
         ft_strcat(cmd, str_arr[0]);
 
-        if (execve(cmd, str_arr, envp) == -1)
+        if (execve(cmd, str_arr, environ) == -1)
             return (false);
     }
     else 

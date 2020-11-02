@@ -1,7 +1,7 @@
 #include "minishell.h"
 
 
-int main(int __attribute__ ((unused)) argc, __attribute__ ((unused)) char **argv, char **envp)
+int main()
 {
     char                *input;
     int                 ret;
@@ -13,7 +13,7 @@ int main(int __attribute__ ((unused)) argc, __attribute__ ((unused)) char **argv
     {
         input[ret-1] = '\0';    // read function returns \n a the end of the string, we don't need it so we set it to NULL
 
-        handle_input(input, envp);
+        handle_input(input);
 
         bzero(input, strlen(input));
         
