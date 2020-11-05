@@ -18,8 +18,8 @@ void handle_input(char *input)
         if (str_arr[0] == NULL)
             return;    
 
-        if ((exec_builtin(str_arr) == false) && (exec_bin(str_arr) == false))   // check if the command is equal to the ones in "exec_builtin" and execute it, otherwise execute from "bin/" path
-            printf("-minishell: %s: command not found\n", cmd_arr[i]);                      // bus error when ft_printf
+        if ((exec_builtin(str_arr) == false))   // check if the command is equal to the ones in "exec_builtin" and execute it, otherwise execute from "bin/" path
+            exec_bin(str_arr); 
 
         i++;
     }

@@ -26,6 +26,6 @@ bool exec_builtin(char **str_arr)
         }
         i++;
     }
-    
+
     return (false);
 }

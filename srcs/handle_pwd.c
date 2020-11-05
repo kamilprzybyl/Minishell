@@ -6,7 +6,7 @@ void handle_pwd(__attribute__ ((unused)) char **args)
 
     getcwd(cwd, sizeof(cwd));
 
-    printf("%s\n", cwd);    // seg fault when ft_printf
+    ft_printf("%s\n", cwd);
 
     return;
 }

@@ -6,7 +6,7 @@
 #include <unistd.h>                     // getcwd(), chdir()
 #include <limits.h>                     // PATH_MAX
 #include <stdbool.h>                    // true, false, bool
-#include "../libft/includes/libft.h"
+#include "../Libft/includes/libft.h"
 
 #define MAX_SIZE 2047                   // max size of input in command line
 

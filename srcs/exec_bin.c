@@ -17,9 +17,12 @@ bool exec_bin(char **str_arr)
         ft_strcat(cmd, str_arr[0]);
 
         if (execve(cmd, str_arr, environ) == -1)
-            return (false);
+        {
+            ft_printf("-minishell: %s: command not found\n", str_arr[0]);
+            exit(0);
+        }
     }
-    else 
+    else
         waitpid(pid, 0, 0);
 
     return (true);

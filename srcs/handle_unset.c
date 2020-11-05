@@ -8,7 +8,7 @@ void handle_unset(char **args)
     i = 0;
     len = 0;
 
-    while (environ[len])    // check enviromental elements lenght
+    while (environ[len])    // check enviromental elements quantity
         len++;
 
     while (i < len)
