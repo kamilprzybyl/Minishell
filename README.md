@@ -6,7 +6,7 @@ The objective of this project is to create a simple shell.
 
 ## General
 
-&ensp; It's behaviour is almost identical to shell
+&ensp; It's behaviour is almost identical to shell:
 
 - It shows a prompt when waiting for a new command
 
