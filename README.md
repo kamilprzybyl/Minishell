@@ -6,7 +6,7 @@ The objective of this project is to create a simple shell.
 
 ## General
 
-<tab>It's behaviour is almost identical to shell </tab>
+&ensp; It's behaviour is almost identical to shell
 
 <br />
 
