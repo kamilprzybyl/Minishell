@@ -6,7 +6,7 @@ The objective of this project is to create a simple shell.
 
 ## General
 
-   It's behaviour is almost identical to shell
+<li>It's behaviour is almost identical to shell</li>
 
 <br />
 
