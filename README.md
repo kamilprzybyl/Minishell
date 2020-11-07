@@ -1,12 +1,12 @@
 # Minishell
 
-The objective of this project is to create a simple shell.
+#### The objective of this project is to create a simple shell.
 
 <br />
 
 ## General
 
-### It's behaviour is almost identical to shell
+#### It's behaviour is almost identical to shell
 
 <br />
 
