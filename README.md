@@ -6,13 +6,13 @@ The objective of this project is to create a simple shell.
 
 ## General
 
-It's behaviour is almost identical to shell
+### It's behaviour is almost identical to shell
 
 <br />
 
-2. It shows a prompt when waiting for a new command
+1. It shows a prompt when waiting for a new command
 
-3. It contains a few recoded builtin functions as follows
+2. It contains a few recoded builtin functions as follows
   * `echo`
   * `cd`
   * `pwd`
@@ -21,9 +21,9 @@ It's behaviour is almost identical to shell
   * `env`
   * `exit`
 
-4. It search and launch the right executable (based on the PATH variable or by using relative or absolute path)
+3. It search and launch the right executable (based on the PATH variable or by using relative or absolute path)
 
-5. `;` separate commands like in shell
+4. `;` separate commands like in shell
 
 <br />
 
