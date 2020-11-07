@@ -8,8 +8,6 @@ The objective of this project is to create a simple shell.
 
 &ensp; It's behaviour is almost identical to shell
 
-<br />
-
 - It shows a prompt when waiting for a new command
 
 - It contains a few recoded builtin functions as follows
