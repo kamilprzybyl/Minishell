@@ -19,7 +19,7 @@ The objective of this project is to create a simple shell.
    - `env`
    - `exit`
 
-- It search and launch the right executable (based on the PATH variable or by using relative or absolute path)
+- It search and launch the right executable (based on the PATH variable)
 
 - `;` separate commands like in shell
 
