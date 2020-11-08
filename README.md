@@ -10,7 +10,7 @@ The objective of this project is to create a simple shell.
 
 - It shows a prompt when waiting for a new command
 
-- It contains a few recoded builtin functions as follows
+- It contains recoded builtin functions as follows
    - `echo`
    - `cd`
    - `pwd`
