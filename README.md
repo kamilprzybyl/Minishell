@@ -6,7 +6,7 @@ The objective of this project is to create a simple shell.
 
 ## General
 
-&ensp; It's behaviour is almost identical to shell:
+&ensp; It's a simplistic version of shell:
 
 - It shows a prompt when waiting for a new command
 
@@ -21,7 +21,7 @@ The objective of this project is to create a simple shell.
 
 - It search and launch the right executable (based on the PATH variable)
 
-- `;` separate commands like in shell
+- Supports `;` seperated list of commands
 
 <br />
 
