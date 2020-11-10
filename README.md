@@ -4,6 +4,8 @@ The objective of this project is to create a simple shell.
 
 <br />
 
+![](GIF.gif)
+
 ## General
 
 &ensp; It's a simplistic version of shell:
