@@ -1,42 +1,81 @@
 #include "minishell.h"
 
-void handle_export(char **args)
+static int realloc_g_environ(int arr_size, int var_size)
 {
-    int     len;
-    int     i;
+    char        **temp;
+    int         i;
+
+    if (!(temp = malloc(sizeof(char *) * arr_size)))
+        return (1);
+
+    i = 0;
+    while (i < arr_size)
+    {
+        if (i < (arr_size - 1))
+        {
+            if (!(temp[i] = malloc(sizeof(char) * (ft_strlen(g_environ[i]) + 1))))
+                return (1);
+            ft_strcpy(temp[i], g_environ[i]);    
+        }
+        else    // allocate memory for new variable
+            if (!(temp[i] = malloc(sizeof(char) * (var_size + 1))))
+                return (1);
+        i++;
+    }
+    temp[i] = NULL;
+    g_environ = temp;
+
+    return (0);
+}
+
+static void add_env_var(char *arg)
+{
+    realloc_g_environ((ft_arrlen(g_environ) + 1), ft_strlen(arg));
+    ft_strcpy(g_environ[(ft_arrlen(g_environ) - 1)], arg);     // create new variable
+    
+}
+
+static void ovr_env_var(char *arg)
+{
+    int         len;
+    int         i;
 
     len = 0;
+    i = 0;
 
-    if (ft_strchr(args[1], '=') == NULL)
-        return;
-
-    while (args[1][len])    // find '=' character index and save it in 'len' v variable
+    while (arg[len])    // find '=' character index and save it in 'len' variable
     {
-        if (args[1][len] == '=')
+        if (arg[len] == '=')
             break;
         len++;
     }
 
-    i = 0;
-    while (environ[i])  // when it requires to overwrite variable
+    while (g_environ[i])
     {
-        if (ft_strncmp(environ[i], args[1], len) == 0 && environ[i][len] == '=')
+        if (ft_strncmp(g_environ[i], arg, len) == 0 && g_environ[i][len] == '=')
         {
-            ft_bzero(environ[i], ft_strlen(environ[i]));
-            ft_strcpy(environ[i], args[1]);
+            ft_bzero(g_environ[i], ft_strlen(g_environ[i]));
+            ft_strcpy(g_environ[i], arg);
             return;
         }
         i++;
-    }
+    }    
+}
 
-    i = 0;
-    while (environ[i])  // when you want to create a new variable
-        i++;
+void handle_export(char **args)
+{
+    int         i;
+
+    i = 1;
+    while (args[i])
+    {
+        if (ft_strchr(args[i], '=') == NULL)
+            return;        
+
+        ovr_env_var(args[i]);  // when it requires to overwrite variable
     
-    environ[i] = malloc(sizeof(char) * (ft_strlen(args[1]) + 1));
-    environ[i+1] = NULL;
+        add_env_var(args[i]);  // when you want to creaete new one   
 
-    ft_strcpy(environ[i], args[1]);
-
-    return;    
+        i++;
+    } 
 }

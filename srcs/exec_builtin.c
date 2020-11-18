@@ -12,16 +12,16 @@ t_builtin       cmds_table[] =
     {NULL, NULL}
 };
 
-bool exec_builtin(char **str_arr)
+bool exec_builtin(char **tokens_tab)
 {
     int     i;
 
     i = 0;
     while (cmds_table[i].cmd_name)
     {
-        if (ft_strcmp(str_arr[0], cmds_table[i].cmd_name) == 0)
+        if (ft_strcmp(tokens_tab[0], cmds_table[i].cmd_name) == 0)
         {
-            cmds_table[i].fct(str_arr);
+            cmds_table[i].fct(tokens_tab);
             return (true);
         }
         i++;

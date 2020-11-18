@@ -10,11 +10,11 @@ void handle_cd(char **args)
     if (!args[1] || (ft_strcmp(args[1], "~") == 0))
     {
         i = 0;
-        while (environ[i])
+        while (g_environ[i])
         {
-            if (ft_strncmp(environ[i], "HOME", 4) == 0 && environ[i][4] == '=')
+            if (ft_strncmp(g_environ[i], "HOME", 4) == 0 && g_environ[i][4] == '=')
             {
-                res = chdir(&environ[i][5]);
+                res = chdir(&g_environ[i][5]);
                 return;
             }
             i++;

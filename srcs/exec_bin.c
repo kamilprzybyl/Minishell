@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-bool exec_bin(char **str_arr)
+bool exec_bin(char **tokens_tab)
 {
     int     pid;
     char    *cmd;
@@ -14,11 +14,11 @@ bool exec_bin(char **str_arr)
     if (pid == 0)
     {
         ft_strcpy(cmd, "/bin/");
-        ft_strcat(cmd, str_arr[0]);
+        ft_strcat(cmd, tokens_tab[0]);
 
-        if (execve(cmd, str_arr, environ) == -1)
+        if (execve(cmd, tokens_tab, g_environ) == -1)
         {
-            ft_printf("-minishell: %s: command not found\n", str_arr[0]);
+            ft_printf("-minishell: %s: command not found\n", tokens_tab[0]);
             exit(0);
         }
     }

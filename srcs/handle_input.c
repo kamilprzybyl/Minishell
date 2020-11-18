@@ -2,24 +2,24 @@
 
 void handle_input(char *input)
 {
-    char        **str_arr;
-    char        **cmd_arr;
+    char        **tokens_tab;
+    char        **cmd_tab;
 
-    if (ft_strlen(input) == 0)
-        return;
+    if (ft_strlen(input) == 0)  // if input contains only tab, space or new line characters
+        return;                     // go to next line and start reading an input again
 
-    cmd_arr = ft_strsplit(input, ';');      // separate commands by semicolons
+    cmd_tab = ft_strsplit(input, ';');      // separate commands by semicolons
 
     int i = 0;
-    while (cmd_arr[i])      // run 'i' commands one by one
+    while (cmd_tab[i])      // run 'i' commands one by one
     {
-        str_arr = ft_strsplit(cmd_arr[i], ' ');     // tokenization process
+        tokens_tab = ft_strsplit(cmd_tab[i], ' ');     // tokenization process
 
-        if (str_arr[0] == NULL)
+        if (tokens_tab[0] == NULL)
             return;    
 
-        if ((exec_builtin(str_arr) == false))   // check if the command is equal to the ones in "exec_builtin" and execute it, otherwise execute from "bin/" path
-            exec_bin(str_arr); 
+        if ((exec_builtin(tokens_tab) == false))   // check if the command is equal to the ones in "exec_builtin" and execute it, otherwise execute from "bin/" path
+            exec_bin(tokens_tab); 
 
         i++;
     }
