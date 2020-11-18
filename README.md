@@ -4,13 +4,15 @@ The objective of this project is to create a simple shell.
 
 <br />
 
+![](GIF.gif)
+
 ## General
 
-&ensp; It's behaviour is almost identical to shell:
+&ensp; It's a simplistic version of shell:
 
 - It shows a prompt when waiting for a new command
 
-- It contains a few recoded builtin functions as follows
+- It contains recoded builtin functions as follows
    - `echo`
    - `cd`
    - `pwd`
@@ -19,9 +21,9 @@ The objective of this project is to create a simple shell.
    - `env`
    - `exit`
 
-- It search and launch the right executable (based on the PATH variable or by using relative or absolute path)
+- It search and launch the right executable (based on the PATH variable)
 
-- `;` separate commands like in shell
+- Supports `;` seperated list of commands
 
 <br />
 
