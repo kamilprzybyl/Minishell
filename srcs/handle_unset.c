@@ -1,27 +1,41 @@
 #include "minishell.h"
 
+static int unset(char *arg)
+{
+    int         i;
+    int         g_env_len;
+    int         arg_len;
+
+    i = 0;
+    g_env_len = ft_arrlen(g_env);
+    arg_len = ft_strlen(arg);
+    
+    while (i < g_env_len)
+    {
+        /* find variable to unset */
+        if (!ft_strncmp(g_env[i], arg, arg_len) && g_env[i][arg_len] == '=')
+        {
+            /* delete variable by moving each one backward to overlap it */
+            while (i < g_env_len)
+            {
+                g_env[i] = g_env[i+1];
+                i++;
+            }
+            return (0);
+        }
+        i++;
+    }
+    return (1);
+}
+
 void handle_unset(char **args)
 {
     int     i;
-    int     len;
 
     i = 0;
-    len = 0;
-
-    while (g_environ[len])    // check enviromental elements quantity
-        len++;
-
-    while (i < len)
+    while (args[i])
     {
-        if (ft_strncmp(g_environ[i], args[1], ft_strlen(args[1])) == 0 && g_environ[i][(ft_strlen(args[1]))] == '=')   // check if the variable name is equal to the name passed as a argument
-        {
-            while (i < len)
-            {
-                g_environ[i] = g_environ[i+1];  // delete variable by moving each one backward (start from element with index 'i') 
-                i++;
-            }
-            return;
-        }
+        unset(args[i]);
         i++;
     }
 

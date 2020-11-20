@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-char **g_environ;
+char **g_env;
 
 int main(int argc, char **argv, char **envp)
 {
@@ -10,7 +10,7 @@ int main(int argc, char **argv, char **envp)
     (void)argc;
     (void)argv;
     
-    setup_g_environ(envp);
+    setup_g_env(envp);
     input = malloc(MAX_SIZE * sizeof(char));
 
     put_prompt();

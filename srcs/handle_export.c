@@ -1,9 +1,9 @@
 #include "minishell.h"
 
-static int realloc_g_environ(int arr_size, int var_size)
+static int realloc_g_env(int arr_size, int var_size)
 {
-    char        **temp;
     int         i;
+    char        **temp;
 
     if (!(temp = malloc(sizeof(char *) * arr_size)))
         return (1);
@@ -13,9 +13,9 @@ static int realloc_g_environ(int arr_size, int var_size)
     {
         if (i < (arr_size - 1))
         {
-            if (!(temp[i] = malloc(sizeof(char) * (ft_strlen(g_environ[i]) + 1))))
+            if (!(temp[i] = malloc(sizeof(char) * (ft_strlen(g_env[i]) + 1))))
                 return (1);
-            ft_strcpy(temp[i], g_environ[i]);    
+            ft_strcpy(temp[i], g_env[i]);    
         }
         else    // allocate memory for new variable
             if (!(temp[i] = malloc(sizeof(char) * (var_size + 1))))
@@ -23,43 +23,47 @@ static int realloc_g_environ(int arr_size, int var_size)
         i++;
     }
     temp[i] = NULL;
-    g_environ = temp;
+    g_env = temp;
 
     return (0);
 }
 
-static void add_env_var(char *arg)
+static int add_env_var(char *arg)
 {
-    realloc_g_environ((ft_arrlen(g_environ) + 1), ft_strlen(arg));
-    ft_strcpy(g_environ[(ft_arrlen(g_environ) - 1)], arg);     // create new variable
+    int         g_env_len;
+    int         arg_len;
+
+    g_env_len = ft_arrlen(g_env);
+    arg_len = ft_strlen(arg);
+
+    realloc_g_env((g_env_len + 1), arg_len);
+    ft_strcpy(g_env[(g_env_len - 1)], arg); // create variable
     
+    return (0);
 }
 
-static void ovr_env_var(char *arg)
+static int ovr_env_var(char *arg)
 {
-    int         len;
     int         i;
+    int         equals_idx;
 
-    len = 0;
     i = 0;
-
-    while (arg[len])    // find '=' character index and save it in 'len' variable
+    equals_idx = ft_charidx(arg, '=');
+    
+    while (g_env[i])
     {
-        if (arg[len] == '=')
-            break;
-        len++;
-    }
-
-    while (g_environ[i])
-    {
-        if (ft_strncmp(g_environ[i], arg, len) == 0 && g_environ[i][len] == '=')
+        /* find variable to overwrite */
+        if (!ft_strncmp(g_env[i], arg, equals_idx) && g_env[i][equals_idx] == '=')
         {
-            ft_bzero(g_environ[i], ft_strlen(g_environ[i]));
-            ft_strcpy(g_environ[i], arg);
-            return;
+            /* overwrite variable */
+            ft_bzero(g_env[i], ft_strlen(g_env[i]));
+            ft_strcpy(g_env[i], arg);
+            return (0);
         }
         i++;
-    }    
+    }  
+
+    return (1);  
 }
 
 void handle_export(char **args)
@@ -72,9 +76,9 @@ void handle_export(char **args)
         if (ft_strchr(args[i], '=') == NULL)
             return;        
 
-        ovr_env_var(args[i]);  // when it requires to overwrite variable
-    
-        add_env_var(args[i]);  // when you want to creaete new one   
+        /* if user doesn't want to overwrite existing var., create new one */
+        if (ovr_env_var(args[i]) != 0)
+            add_env_var(args[i]);
 
         i++;
     } 

@@ -11,7 +11,7 @@
 #define MAX_SIZE 2047                   // max size of input in command line
 
 
-extern char **g_environ;
+extern char **g_env;                    // my envrion
 
 typedef struct      s_builtin
 {
@@ -20,7 +20,7 @@ typedef struct      s_builtin
 
 }                   t_builtin;
 
-int setup_g_environ(char **envp);
+int setup_g_env(char **envp);
 void handle_input(char *input);
 bool exec_builtin(char **tokens_tab);
 bool exec_bin(char **tokens_tab);
