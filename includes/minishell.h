@@ -20,6 +20,7 @@ typedef struct      s_builtin
 
 }                   t_builtin;
 
+int minishell();
 int setup_g_env(char **envp);
 void handle_input(char *input);
 bool exec_builtin(char **tokens_tab);
